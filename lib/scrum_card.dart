@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'full_page_scrum_card.dart';
+import 'package:flutter/cupertino.dart';
 
 class ScrumCard extends StatelessWidget {
   const ScrumCard({
@@ -23,7 +25,9 @@ class ScrumCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
           highlightColor: Colors.grey,
           onPressed: () {
-            print('pressed 1');
+            Navigator.push(
+                context, CupertinoPageRoute(builder: (context) => FullPageScrumCard(text : numberText))
+            );
           },
           child: Text(
             numberText,
