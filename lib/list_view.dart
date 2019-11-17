@@ -8,7 +8,6 @@ class MainListView extends StatelessWidget {
 
   List<Widget> getElementList() {
     final children = <Widget>[];
-    Row row;
     for (var i = 0; i < data.length; i++) {
       children.add(ScrumCard(numberText: data.elementAt(i).toString()));
     }
