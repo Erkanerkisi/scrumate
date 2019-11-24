@@ -11,6 +11,9 @@ class MainListView extends StatelessWidget {
     for (var i = 0; i < data.length; i++) {
       children.add(ScrumCard(numberText: data.elementAt(i).toString()));
     }
+    children.add(ScrumCard(numberText: "?"));
+    children.add(ScrumCard(numberText: "∞"));
+    children.add(ScrumCard(numberText: "", image: Image(image: AssetImage('images/cup.png')),));
     return children;
   }
 

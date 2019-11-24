@@ -14,26 +14,12 @@ class MyApp extends StatelessWidget {
         home: DefaultTabController(
       length: 2,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Scrumate"),
-            centerTitle: true,
-            bottom: TabBar(
-              tabs: <Widget>[
-                Icon(
-                  Icons.home,
-                  color: Colors.indigo,
-                  size: 40.0,
-                ),
-                Icon(
-                  Icons.settings,
-                  color: Colors.indigo,
-                  size: 40.0,
-                )
-              ],
+          backgroundColor: Colors.indigo[900],
+          body: Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: TabBarView(
+              children: <Widget>[Home(), Settings()],
             ),
-          ),
-          body: TabBarView(
-            children: <Widget>[Home(), Settings()],
           )),
     ));
   }

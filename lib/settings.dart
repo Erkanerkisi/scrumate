@@ -7,41 +7,53 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SettingsModal>(builder: (context, settings, child) {
       return Container(
-        margin: EdgeInsets.all(30.0),
-        child: ListView(
-          children: <Widget>[
-            InputDecorator(
-              decoration: InputDecoration(
-                icon: const Icon(Icons.format_list_numbered),
-                labelText: 'Type',
+        color: Colors.white,
+        child: Container(
+          margin: EdgeInsets.all(30.0),
+          child: ListView(
+            children: <Widget>[
+              Center(
+                child: new Text(
+                  "Settings",
+                  style: TextStyle(fontSize: 30),
+                ),
               ),
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton(
-                  value: settings.getType(),
-                  isDense: true,
+              SizedBox(height: 50.0),
+              new Text(
+                "Type",
+                style: TextStyle(fontSize: 20),
+              ),
+              Divider(),
+              ListTile(
+                title: const Text('Fibonacci'),
+                leading: Radio(
+                  value: 'Fibonacci',
+                  groupValue: settings.getType(),
                   onChanged: (String newValue) {
                     settings.changeType(newValue);
                   },
-                  items: settings
-                      .getCardTypes()
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            InputDecorator(
-              decoration: InputDecoration(
-                icon: const Icon(Icons.info),
-                labelText: 'Largest Number',
+              ListTile(
+                title: const Text('Sayılar'),
+                leading: Radio(
+                  value: 'Sayılar',
+                  groupValue: settings.getType(),
+                  onChanged: (String newValue) {
+                    settings.changeType(newValue);
+                  },
+                ),
               ),
-              child: DropdownButtonHideUnderline(
+              Divider(),
+              new Text(
+                "Largest Number",
+                style: TextStyle(fontSize: 20),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10.0),
+              ),
+              Divider(),
+              DropdownButtonHideUnderline(
                 child: DropdownButton(
                   value: settings.getMaxValue(),
                   isDense: true,
@@ -58,8 +70,16 @@ class Settings extends StatelessWidget {
                   }).toList(),
                 ),
               ),
-            )
-          ],
+              Padding(
+                padding: EdgeInsets.only(bottom: 10.0),
+              ),
+              Divider(),
+              new Text(
+                "About",
+                style: TextStyle(fontSize: 20),
+              )
+            ],
+          ),
         ),
       );
     });
