@@ -7,34 +7,55 @@ class ScrumCard extends StatelessWidget {
     Key key,
     this.color = const Color(0xFF616161),
     @required this.numberText,
+    this.image,
     this.child,
   }) : super(key: key);
 
   final Color color;
   final String numberText;
   final Widget child;
+  final Image image;
+
+  Widget _buildChild() {
+    if (image != null) {
+      return image;
+    }
+    return Text(
+      numberText,
+      style: TextStyle(fontFamily: 'Alatsi', fontSize: 50, color: Colors.white),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20.0),
-      child: Container(
-        margin: EdgeInsets.only(top: 2.0),
-        color: color,
-        child: OutlineButton(
-          borderSide: BorderSide(width: 2.0, color: Colors.white),
-          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-          highlightColor: Colors.grey,
-          onPressed: () {
-            Navigator.push(
-                context, CupertinoPageRoute(builder: (context) => FullPageScrumCard(text : numberText))
-            );
-          },
-          child: Text(
-            numberText,
-            style: TextStyle(fontSize: 30, color: Colors.white),
-          ),
-        ),
-      ),
+    return FlatButton(
+      color: Colors.lightBlue[700],
+      shape: RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(50.0),
+          side: BorderSide(width: 2.0, color: Colors.white)),
+      onPressed: () {
+        Navigator.push(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  FullPageScrumCard(text: numberText,image: image,),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      RotationTransition(
+                turns: Tween<double>(
+                  begin: 0.0,
+                  end: 1.0,
+                ).animate(
+                  CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.fastOutSlowIn,
+                  ),
+                ),
+                child: child,
+              ),
+            ));
+      },
+      child: _buildChild(),
     );
   }
 }
