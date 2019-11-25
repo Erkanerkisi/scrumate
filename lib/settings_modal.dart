@@ -6,19 +6,26 @@ class SettingsModal extends ChangeNotifier {
   int _maxValue = 144;
 
   //Card Types All List
-  Map<String,List<int>> _map ={
-    "Fibonacci"    : [1,2,3,5,8,13,21,34,55,89,144,233,377,610,987],
-    "Sayılar" : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+  Map<String,List<String>> _map ={
+    "Fibonacci"    : ['1','2','3','5','8','13','21','34','55','89','144','233','377','610','987'],
+    "Standart" : ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'],
+    "T-Shirt" : ['XS','S','M','L','XL','XXL','XXXL'],
   };
   //Default max values
    Map<String,int> _defaultMaxValues ={
     "Fibonacci"    : 144,
-    "Sayılar"      : 10
+    "Standart"      : 10
   };
   //Get List with given type and max Value
-  List<int> getDataViaType(String type) =>_map[type].where((k) => k <= getMaxValue()).toList();
+  List<String> getDataViaType(String type) {
+    if(type == 'T-Shirt'){
+      return _map[type];
+    }
+    List<String> list = _map[type].map((k)=> int.parse(k)).toList().where((a) => a <= getMaxValue()).toList().map((f)=> f.toString()).toList();
+    return list;
+  }
   //
-  List<int> getSelectionOfMaxValues(String type) =>_map[type].toList();
+  List<int> getSelectionOfMaxValues(String type) =>_map[type].map((f)=> int.parse(f)).toList();
   //Get all types
   List<String> getCardTypes () => _map.keys.toList();
 
@@ -27,7 +34,9 @@ class SettingsModal extends ChangeNotifier {
 
   void changeType(String type) {
     _type = type;
+    if(type != 'T-Shirt'){
     _maxValue = _defaultMaxValues[type];
+    }
     notifyListeners();
   }
   void changeMaxValue(int maxValue) {
