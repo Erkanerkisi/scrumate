@@ -6,6 +6,19 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<SettingsModal>(builder: (context, settings, child) {
+      List<DropdownMenuItem<int>> getItems(String type) {
+        if (type == 'T-Shirt') {
+          return null;
+        }
+        return settings
+            .getSelectionOfMaxValues(type)
+            .map<DropdownMenuItem<int>>((int value) {
+          return DropdownMenuItem<int>(
+            value: value,
+            child: Text(value.toString()),
+          );
+        }).toList();
+      }
       return Container(
         color: Colors.white,
         child: Container(
@@ -35,9 +48,19 @@ class Settings extends StatelessWidget {
                 ),
               ),
               ListTile(
-                title: const Text('Sayılar'),
+                title: const Text('Standart'),
                 leading: Radio(
-                  value: 'Sayılar',
+                  value: 'Standart',
+                  groupValue: settings.getType(),
+                  onChanged: (String newValue) {
+                    settings.changeType(newValue);
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('T-Shirt'),
+                leading: Radio(
+                  value: 'T-Shirt',
                   groupValue: settings.getType(),
                   onChanged: (String newValue) {
                     settings.changeType(newValue);
@@ -60,14 +83,7 @@ class Settings extends StatelessWidget {
                   onChanged: (int value) {
                     settings.changeMaxValue(value);
                   },
-                  items: settings
-                      .getSelectionOfMaxValues(settings.getType())
-                      .map<DropdownMenuItem<int>>((int value) {
-                    return DropdownMenuItem<int>(
-                      value: value,
-                      child: Text(value.toString()),
-                    );
-                  }).toList(),
+                  items: getItems(settings.getType()),
                 ),
               ),
               Padding(
