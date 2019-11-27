@@ -19,6 +19,7 @@ class Settings extends StatelessWidget {
           );
         }).toList();
       }
+
       return Container(
         color: Colors.white,
         child: Container(
@@ -33,7 +34,7 @@ class Settings extends StatelessWidget {
               ),
               SizedBox(height: 50.0),
               new Text(
-                "Type",
+                "Deck Type",
                 style: TextStyle(fontSize: 20),
               ),
               Divider(),
@@ -67,16 +68,21 @@ class Settings extends StatelessWidget {
                   },
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10.0),
+              ),
               Divider(),
               new Text(
-                "Largest Number",
+                "Preferences",
                 style: TextStyle(fontSize: 20),
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: 10.0),
               ),
               Divider(),
-              DropdownButtonHideUnderline(
+              ListTile(
+                title: const Text('Largest Number'),
+                leading: DropdownButtonHideUnderline(
                 child: DropdownButton(
                   value: settings.getMaxValue(),
                   isDense: true,
@@ -85,6 +91,31 @@ class Settings extends StatelessWidget {
                   },
                   items: getItems(settings.getType()),
                 ),
+              ),
+              ),
+              
+              Padding(
+                padding: EdgeInsets.only(bottom: 10.0),
+              ),
+              ListTile(
+                title: const Text('Tap To Reveal'),
+                leading:  Switch(
+                activeColor: Colors.green,
+                value: settings.getTapToReveal(),
+                onChanged: (val) {
+                  settings.setTapToReveal(val);
+                },
+              ),
+              ),
+              ListTile(
+                title: const Text('Shake To Reveal'),
+                leading:  Switch(
+                activeColor: Colors.green,
+                value: settings.getShakeToReveal(),
+                onChanged: (val) {
+                  settings.setShakeToReveal(val);
+                },
+              ),
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: 10.0),
