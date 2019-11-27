@@ -4,6 +4,8 @@ class SettingsModal extends ChangeNotifier {
   // initial type and max value
   String _type = 'Fibonacci';
   int _maxValue = 144;
+  bool _tapToReveal = false;
+  bool _shakeToReveal = false;
 
   //Card Types All List
   Map<String,List<String>> _map ={
@@ -42,5 +44,19 @@ class SettingsModal extends ChangeNotifier {
   void changeMaxValue(int maxValue) {
     _maxValue = maxValue;
     notifyListeners();
+  }
+  void setTapToReveal(bool value) {
+    _tapToReveal = value;
+    notifyListeners();
+  }
+  bool getTapToReveal() {
+    return _tapToReveal;
+  }
+    void setShakeToReveal(bool value) {
+    _shakeToReveal = value;
+    notifyListeners();
+  }
+  bool getShakeToReveal() {
+    return _shakeToReveal;
   }
 }
