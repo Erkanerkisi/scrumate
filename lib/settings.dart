@@ -49,9 +49,9 @@ class Settings extends StatelessWidget {
                 ),
               ),
               ListTile(
-                title: const Text('Standart'),
+                title: const Text('Standard'),
                 leading: Radio(
-                  value: 'Standart',
+                  value: 'Standard',
                   groupValue: settings.getType(),
                   onChanged: (String newValue) {
                     settings.changeType(newValue);
@@ -124,7 +124,9 @@ class Settings extends StatelessWidget {
               new Text(
                 "About",
                 style: TextStyle(fontSize: 20),
-              )
+              ),
+              Divider(),
+              new Text('codecavetech@gmail.com')
             ],
           ),
         ),
