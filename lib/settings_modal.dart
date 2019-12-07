@@ -10,13 +10,13 @@ class SettingsModal extends ChangeNotifier {
   //Card Types All List
   Map<String,List<String>> _map ={
     "Fibonacci"    : ['1','2','3','5','8','13','21','34','55','89','144','233','377','610','987'],
-    "Standart" : ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'],
+    "Standard" : ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'],
     "T-Shirt" : ['XS','S','M','L','XL','XXL','XXXL'],
   };
   //Default max values
    Map<String,int> _defaultMaxValues ={
     "Fibonacci"    : 144,
-    "Standart"      : 10
+    "Standard"      : 10
   };
   //Get List with given type and max Value
   List<String> getDataViaType(String type) {
