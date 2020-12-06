@@ -14,13 +14,14 @@ You can use this app for sizing your issues with your team on everywhere and hav
 ## Features
 
 Multiple Deck Types
-  1. Fibonacci
+  1. Fibonacci 
   2. Standart
   3. T-Shirt
-Shake to reveal
-Tap to reveal
-Animations
-Simple to use
+  
+<p>Shake to reveal</p>
+<p>Tap to reveal</p>
+<p>Animations</p>
+<p>Simple to use</p>
 
 ## Store Links
 
